@@ -1,0 +1,73 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS",
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "keywords": [
+    "portfolio",
+    "nextjs",
+    "typescript",
+    "tailwindcss",
+    "react",
+    "framer-motion"
+  ],
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "analyze": "ANALYZE=true npm run build",
+    "export": "next build",
+    "clean": "rm -rf .next out node_modules/.cache",
+    "docker:build": "docker build -t portfolio-website .",
+    "docker:run": "docker run -p 3000:3000 portfolio-website",
+    "docker:compose": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "prepare": "husky install || true",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "echo \"No tests specified\" && exit 0",
+    "precommit": "npm run lint && npm run type-check",
+    "prebuild": "npm run type-check"
+  },
+  "dependencies": {
+    "@portabletext/react": "^6.0.0",
+    "@sanity/image-url": "^2.0.2",
+    "@sanity/vision": "^5.1.0",
+    "framer-motion": "^12.23.26",
+    "next": "16.1.1",
+    "next-sanity": "^12.0.5",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "sanity": "^5.1.0",
+    "styled-components": "^6.1.19"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.3",
+    "@next/bundle-analyzer": "^16.1.1",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/node": "^25.0.3",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "16.1.1",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/portfolio-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/portfolio-website/issues"
+  },
+  "homepage": "https://yourdomain.com"
+}
