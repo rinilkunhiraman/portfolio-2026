@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import type { Skill, SkillCategory } from '@/types'
-import { FadeInUp, ProgressBar, StaggerContainer, StaggerItem } from '@/components/ui/Animations'
+import { StaggerContainer, StaggerItem } from '@/components/ui/Animations'
 
 interface SkillsProps {
   skillsData: { categories: SkillCategory[]; skills: Skill[] } | null
@@ -34,20 +34,6 @@ const Skills = ({ skillsData }: SkillsProps) => {
       indigo: 'bg-indigo-600',
     };
     return colorMap[color] || 'bg-gray-600';
-  };
-
-  const getProficiencyColor = (proficiency: number) => {
-    if (proficiency >= 85) return 'bg-green-500';
-    if (proficiency >= 70) return 'bg-blue-500';
-    if (proficiency >= 60) return 'bg-yellow-500';
-    return 'bg-orange-500';
-  };
-
-  const getProficiencyLabel = (proficiency: number) => {
-    if (proficiency >= 85) return 'Expert';
-    if (proficiency >= 70) return 'Advanced';
-    if (proficiency >= 60) return 'Intermediate';
-    return 'Learning';
   };
 
   return (
@@ -87,42 +73,17 @@ const Skills = ({ skillsData }: SkillsProps) => {
           </div>
 
           {/* Skills Grid */}
-          <StaggerContainer staggerDelay={0.1}>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredSkills.map((skill, index) => {
-                const proficiency = skill.proficiency || 50
-                const proficiencyColor = getProficiencyColor(proficiency)
-                const progressColor = proficiencyColor.includes('green')
-                  ? 'green'
-                  : proficiencyColor.includes('blue')
-                  ? 'blue'
-                  : proficiencyColor.includes('yellow')
-                  ? 'yellow'
-                  : 'orange'
-
-                return (
-                  <StaggerItem key={skill._id || skill.name}>
-                    <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{skill.name}</h3>
-                        <span
-                          className={`px-2 py-1 text-xs font-medium text-white rounded-full ${proficiencyColor}`}
-                        >
-                          {getProficiencyLabel(proficiency)}
-                        </span>
-                      </div>
-
-                      <div className="mb-2">
-                        <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-1">
-                          <span>Proficiency</span>
-                          <span>{proficiency}%</span>
-                        </div>
-                        <ProgressBar value={proficiency} color={progressColor} delay={index * 0.1} />
-                      </div>
-                    </div>
-                  </StaggerItem>
-                )
-              })}
+          <StaggerContainer staggerDelay={0.05}>
+            <div className="flex flex-wrap gap-3 justify-center">
+              {filteredSkills.map((skill) => (
+                <StaggerItem key={skill._id || skill.name}>
+                  <div className="bg-gray-50 dark:bg-gray-800 rounded-lg px-4 py-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 border border-gray-200 dark:border-gray-700">
+                    <span className="text-sm font-medium text-gray-900 dark:text-white">
+                      {skill.name}
+                    </span>
+                  </div>
+                </StaggerItem>
+              ))}
             </div>
           </StaggerContainer>
 
