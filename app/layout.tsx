@@ -9,6 +9,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: 'Rinil Kunhiraman - Full-Stack Developer Portfolio',
   description:
     'Professional portfolio showcasing full-stack development expertise, data engineering, and DevOps skills. Experienced in React, Next.js, Node.js, MongoDB, and modern web technologies.',
