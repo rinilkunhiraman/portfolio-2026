@@ -102,12 +102,7 @@ export interface Skill {
   _updatedAt: string;
   name: string;
   category: SkillCategory;
-  proficiency: number;
-  proficiencyLabel?: 'learning' | 'intermediate' | 'advanced' | 'expert';
   icon?: SanityImage;
-  description?: string;
-  yearsOfExperience?: number;
-  isHighlighted: boolean;
   order: number;
   isActive: boolean;
 }

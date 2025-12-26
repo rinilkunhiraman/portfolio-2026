@@ -86,8 +86,6 @@ export const SKILLS_QUERY = defineQuery(`
       slug,
       color
     },
-    proficiency,
-    proficiencyLabel,
     icon {
       asset->{
         _id,
@@ -95,9 +93,6 @@ export const SKILLS_QUERY = defineQuery(`
       },
       alt
     },
-    description,
-    yearsOfExperience,
-    isHighlighted,
     order,
     isActive
   }
@@ -122,8 +117,6 @@ export const SKILLS_WITH_CATEGORIES_QUERY = defineQuery(`
         slug,
         color
       },
-      proficiency,
-      proficiencyLabel,
       icon {
         asset->{
           _id,
@@ -131,9 +124,6 @@ export const SKILLS_WITH_CATEGORIES_QUERY = defineQuery(`
         },
         alt
       },
-      description,
-      yearsOfExperience,
-      isHighlighted,
       order
     }
   }
@@ -245,8 +235,7 @@ export const PROJECT_BY_SLUG_QUERY = defineQuery(`
       category->{
         name,
         color
-      },
-      proficiency
+      }
     },
     features,
     challenges,

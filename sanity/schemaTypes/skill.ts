@@ -19,54 +19,13 @@ export const skill = defineType({
       validation: Rule => Rule.required()
     }),
     defineField({
-      name: 'proficiency',
-      title: 'Proficiency Level',
-      type: 'number',
-      description: 'Proficiency level from 0 to 100',
-      validation: (Rule) => Rule.required().min(0).max(100),
-    }),
-    defineField({
-      name: 'proficiencyLabel',
-      title: 'Proficiency Label',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Learning (0-59)', value: 'learning' },
-          { title: 'Intermediate (60-69)', value: 'intermediate' },
-          { title: 'Advanced (70-84)', value: 'advanced' },
-          { title: 'Expert (85-100)', value: 'expert' }
-        ]
-      },
-      description: 'Auto-calculated based on proficiency level'
-    }),
-    defineField({
       name: 'icon',
       title: 'Skill Icon',
       type: 'image',
-      description: 'Optional icon/logo for the skill',
+      description: 'Optional icon/logo for the skill (not currently displayed)',
       options: {
         hotspot: true
       }
-    }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-      description: 'Brief description of experience with this skill'
-    }),
-    defineField({
-      name: 'yearsOfExperience',
-      title: 'Years of Experience',
-      type: 'number',
-      description: 'How many years you\'ve been using this skill',
-      validation: Rule => Rule.min(0).max(20)
-    }),
-    defineField({
-      name: 'isHighlighted',
-      title: 'Highlighted Skill',
-      type: 'boolean',
-      description: 'Mark as a key/featured skill',
-      initialValue: false
     }),
     defineField({
       name: 'order',
@@ -81,26 +40,9 @@ export const skill = defineType({
       type: 'boolean',
       description: 'Whether this skill should be displayed',
       initialValue: true
-    }),
-    defineField({
-      name: 'relatedProjects',
-      title: 'Related Projects',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'project' }]
-        }
-      ],
-      description: 'Projects that showcase this skill'
     })
   ],
   orderings: [
-    {
-      title: 'Proficiency (High to Low)',
-      name: 'proficiencyDesc',
-      by: [{ field: 'proficiency', direction: 'desc' }]
-    },
     {
       title: 'Name A-Z',
       name: 'nameAsc',
@@ -115,15 +57,14 @@ export const skill = defineType({
   preview: {
     select: {
       title: 'name',
-      subtitle: 'proficiency',
       media: 'icon',
       category: 'category.name'
     },
     prepare(selection) {
-      const { title, subtitle, media, category } = selection
+      const { title, media, category } = selection
       return {
         title,
-        subtitle: `${subtitle}% • ${category || 'No category'}`,
+        subtitle: category || 'No category',
         media
       }
     }
