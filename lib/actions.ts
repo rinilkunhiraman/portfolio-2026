@@ -3,17 +3,37 @@
 import { ContactForm } from '@/types'
 
 export async function submitContactForm(formData: ContactForm) {
-  // Simulate API call
-  await new Promise((resolve) => setTimeout(resolve, 1000))
+  const accessKey = process.env.NEXT_PUBLIC_W3C_KEY
 
-  // In a real application, this would send the form data to your backend
-  console.log('Form submitted:', formData)
+  if (!accessKey) {
+    throw new Error('Web3Forms access key is not configured')
+  }
 
-  // Simulate success/error
-  if (Math.random() > 0.1) {
-    // 90% success rate
-    return { success: true, message: 'Message sent successfully!' }
-  } else {
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        access_key: accessKey,
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      }),
+    })
+
+    const result = await response.json()
+
+    if (result.success) {
+      return { success: true, message: 'Message sent successfully!' }
+    } else {
+      throw new Error(result.message || 'Failed to send message')
+    }
+  } catch (error) {
+    console.error('Form submission error:', error)
     throw new Error('Failed to send message. Please try again.')
   }
 }
