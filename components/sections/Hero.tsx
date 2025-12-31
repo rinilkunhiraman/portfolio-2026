@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import type { Image as SanityImageType } from 'sanity'
 import type { PersonalInfo } from '@/types'
 import { urlFor } from '@/sanity/lib/image'
 
@@ -136,7 +137,7 @@ const Hero = ({ personalInfo }: HeroProps) => {
                 <div className="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
                   {personalInfo?.profileImage ? (
                     <Image
-                      src={urlFor(personalInfo.profileImage).width(400).height(400).url()}
+                      src={urlFor(personalInfo.profileImage as unknown as SanityImageType).width(400).height(400).url()}
                       alt={personalInfo.profileImage.alt || personalInfo.name || 'Profile'}
                       width={400}
                       height={400}
