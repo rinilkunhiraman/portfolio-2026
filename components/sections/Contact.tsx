@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import HCaptcha from '@hcaptcha/react-hcaptcha'
 import type { ContactForm, PersonalInfo } from '@/types'
 import { submitContactForm } from '@/lib/actions'
 import { FadeInUp, FadeInLeft, FadeInRight, ScaleOnHover } from '@/components/ui/Animations'
@@ -18,6 +19,8 @@ const Contact = ({ personalInfo }: ContactProps) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const captchaRef = useRef<HCaptcha>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -27,16 +30,30 @@ const Contact = ({ personalInfo }: ContactProps) => {
     }));
   };
 
+  const handleCaptchaVerify = (token: string) => {
+    setCaptchaToken(token);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!captchaToken) {
+      setSubmitStatus('error');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      const result = await submitContactForm(formData);
+      const result = await submitContactForm(formData, captchaToken);
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
+      setCaptchaToken(null);
+      captchaRef.current?.resetCaptcha();
     } catch (error) {
       setSubmitStatus('error');
+      setCaptchaToken(null);
+      captchaRef.current?.resetCaptcha();
     } finally {
       setIsSubmitting(false);
     }
@@ -281,10 +298,20 @@ const Contact = ({ personalInfo }: ContactProps) => {
                   />
                 </div>
 
+                {/* hCaptcha */}
+                <div className="flex justify-center">
+                  <HCaptcha
+                    ref={captchaRef}
+                    sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ''}
+                    onVerify={handleCaptchaVerify}
+                    theme="dark"
+                  />
+                </div>
+
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !captchaToken}
                   className="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {isSubmitting ? (

@@ -2,11 +2,15 @@
 
 import { ContactForm } from '@/types'
 
-export async function submitContactForm(formData: ContactForm) {
+export async function submitContactForm(formData: ContactForm, captchaToken: string) {
   const accessKey = process.env.NEXT_PUBLIC_W3C_KEY
 
   if (!accessKey) {
     throw new Error('Web3Forms access key is not configured')
+  }
+
+  if (!captchaToken) {
+    throw new Error('Captcha verification is required')
   }
 
   try {
@@ -22,6 +26,7 @@ export async function submitContactForm(formData: ContactForm) {
         email: formData.email,
         subject: formData.subject,
         message: formData.message,
+        'h-captcha-response': captchaToken,
       }),
     })
 
