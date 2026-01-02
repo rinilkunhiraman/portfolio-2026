@@ -73,7 +73,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium ${
+                className={`text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium ${
                   pathname === item.href ? 'text-blue-600 dark:text-blue-400' : ''
                 }`}
                 onClick={() => setIsMenuOpen(false)}
@@ -142,7 +142,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors ${
+                className={`block w-full text-left px-4 py-2 text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors ${
                   pathname === item.href ? 'text-blue-600 dark:text-blue-400 bg-gray-50 dark:bg-gray-800' : ''
                 }`}
                 onClick={() => setIsMenuOpen(false)}
