@@ -19,6 +19,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [statusMessage, setStatusMessage] = useState<string>('');
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const captchaRef = useRef<HCaptcha>(null);
 
@@ -39,19 +40,26 @@ const Contact = ({ personalInfo }: ContactProps) => {
 
     if (!captchaToken) {
       setSubmitStatus('error');
+      setStatusMessage('Please complete the captcha verification');
       return;
     }
 
     setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setStatusMessage('');
 
     try {
       const result = await submitContactForm(formData, captchaToken);
       setSubmitStatus('success');
+      setStatusMessage(result.message);
+      // Clear form only on success
       setFormData({ name: '', email: '', subject: '', message: '' });
       setCaptchaToken(null);
       captchaRef.current?.resetCaptcha();
     } catch (error) {
       setSubmitStatus('error');
+      setStatusMessage(error instanceof Error ? error.message : 'Failed to send message. Please try again.');
+      // Reset captcha on error so user can retry
       setCaptchaToken(null);
       captchaRef.current?.resetCaptcha();
     } finally {
@@ -328,18 +336,18 @@ const Contact = ({ personalInfo }: ContactProps) => {
                 </button>
 
                 {/* Status Messages */}
-                {submitStatus === 'success' && (
+                {submitStatus === 'success' && statusMessage && (
                   <div className="p-4 bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg">
                     <p className="text-green-800 dark:text-green-300 text-sm">
-                      Thank you! Your message has been sent successfully. I'll get back to you soon.
+                      {statusMessage}
                     </p>
                   </div>
                 )}
 
-                {submitStatus === 'error' && (
+                {submitStatus === 'error' && statusMessage && (
                   <div className="p-4 bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg">
                     <p className="text-red-800 dark:text-red-300 text-sm">
-                      Sorry, there was an error sending your message. Please try again or contact me directly.
+                      {statusMessage}
                     </p>
                   </div>
                 )}
