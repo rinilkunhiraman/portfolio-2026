@@ -21,7 +21,7 @@ const Skills = ({ skillsData }: SkillsProps) => {
   const filteredSkills =
     activeCategory === 'all'
       ? skills
-      : skills.filter((skill) => skill.category?._ref === activeCategory || skill.category?.slug?.current === activeCategory)
+      : skills.filter((skill) => skill.category?._ref === activeCategory || skill.category?._id === activeCategory || skill.category?.slug?.current === activeCategory)
 
   const getColorClasses = (color: string) => {
     const colorMap: { [key: string]: string } = {
@@ -73,18 +73,20 @@ const Skills = ({ skillsData }: SkillsProps) => {
           </div>
 
           {/* Skills Grid */}
-          <StaggerContainer staggerDelay={0.05}>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {filteredSkills.map((skill) => (
-                <StaggerItem key={skill._id || skill.name}>
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded-lg px-4 py-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 border border-gray-300 dark:border-gray-700">
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">
-                      {skill.name}
-                    </span>
-                  </div>
-                </StaggerItem>
-              ))}
-            </div>
+          <StaggerContainer
+            key={activeCategory}
+            staggerDelay={0.05}
+            className="flex flex-wrap gap-3 justify-center"
+          >
+            {filteredSkills.map((skill) => (
+              <StaggerItem key={skill._id || skill.name}>
+                <div className="bg-gray-50 dark:bg-gray-800 rounded-lg px-4 py-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 border border-gray-300 dark:border-gray-700">
+                  <span className="text-sm font-medium text-gray-900 dark:text-white">
+                    {skill.name}
+                  </span>
+                </div>
+              </StaggerItem>
+            ))}
           </StaggerContainer>
 
           {/* Skills Summary */}

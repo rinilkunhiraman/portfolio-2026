@@ -13,16 +13,16 @@ const AnimatedCounter = ({ end, duration = 2 }: { end: number; duration?: number
     const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
-      
+
       setCount(Math.floor(progress * end));
-      
+
       if (progress < 1) {
         animationFrame = requestAnimationFrame(animate);
       }
     };
 
     animationFrame = requestAnimationFrame(animate);
-    
+
     return () => {
       if (animationFrame) {
         cancelAnimationFrame(animationFrame);
@@ -124,7 +124,7 @@ const FloatingElement = ({ children, delay = 0 }: { children: React.ReactNode; d
   );
 };
 
-const StaggerContainer = ({ children, staggerDelay = 0.1 }: { children: React.ReactNode; staggerDelay?: number }) => {
+const StaggerContainer = ({ children, staggerDelay = 0.1, className = "" }: { children: React.ReactNode; staggerDelay?: number; className?: string }) => {
   return (
     <motion.div
       initial="hidden"
@@ -138,6 +138,7 @@ const StaggerContainer = ({ children, staggerDelay = 0.1 }: { children: React.Re
           }
         }
       }}
+      className={className}
     >
       {children}
     </motion.div>
@@ -195,4 +196,3 @@ export {
   SlideInFromBottom,
   RotateOnHover
 };
-
