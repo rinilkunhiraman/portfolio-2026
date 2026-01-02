@@ -48,8 +48,12 @@ const Contact = ({ personalInfo }: ContactProps) => {
     setSubmitStatus('idle');
     setStatusMessage('');
 
+    console.log('Form submission started...')
+    console.log('Captcha token available:', !!captchaToken)
+
     try {
       const result = await submitContactForm(formData, captchaToken);
+      console.log('Form submission successful:', result)
       setSubmitStatus('success');
       setStatusMessage(result.message);
       // Clear form only on success
@@ -57,6 +61,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
       setCaptchaToken(null);
       captchaRef.current?.resetCaptcha();
     } catch (error) {
+      console.error('Form submission failed:', error)
       setSubmitStatus('error');
       setStatusMessage(error instanceof Error ? error.message : 'Failed to send message. Please try again.');
       // Reset captcha on error so user can retry
