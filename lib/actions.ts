@@ -7,7 +7,7 @@ export async function submitContactForm(formData: ContactForm, captchaToken: str
 
   if (!accessKey) {
     console.error('Web3Forms access key is not configured')
-    throw new Error('Contact form is not configured. Please email me@remote.com directly.')
+    throw new Error('Contact form is not configured. Please email contactme.izbf7@passinbox.com directly.')
   }
 
   if (!captchaToken) {
@@ -36,7 +36,7 @@ export async function submitContactForm(formData: ContactForm, captchaToken: str
     if (!contentType || !contentType.includes('application/json')) {
       const text = await response.text()
       console.error('Non-JSON response:', text.substring(0, 200))
-      throw new Error('Invalid response from server. Please email me@remote.com directly.')
+      throw new Error('Invalid response from server. Please email contactme.izbf7@passinbox.com directly.')
     }
 
     const result = await response.json()
@@ -47,10 +47,10 @@ export async function submitContactForm(formData: ContactForm, captchaToken: str
       console.error('Status:', response.status, response.statusText)
 
       if (response.status === 403) {
-        throw new Error('Contact form is temporarily unavailable. Please email me@remote.com directly.')
+        throw new Error('Contact form is temporarily unavailable. Please email contactme.izbf7@passinbox.com directly.')
       }
 
-      throw new Error(result.message || 'Failed to send message. Please try again or email me@remote.com directly.')
+      throw new Error(result.message || 'Failed to send message. Please try again or email contactme.izbf7@passinbox.com directly.')
     }
 
     if (result.success) {
@@ -65,6 +65,6 @@ export async function submitContactForm(formData: ContactForm, captchaToken: str
       throw error
     }
 
-    throw new Error('Failed to send message. Please email me@remote.com directly.')
+    throw new Error('Failed to send message. Please email contactme.izbf7@passinbox.com directly.')
   }
 }
