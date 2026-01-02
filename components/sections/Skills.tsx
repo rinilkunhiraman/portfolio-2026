@@ -46,7 +46,7 @@ const Skills = ({ skillsData }: SkillsProps) => {
               Skills & Technologies
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-700 dark:text-gray-400 max-w-2xl mx-auto">
               A comprehensive overview of my technical expertise and the technologies I work with
             </p>
           </div>
@@ -63,7 +63,7 @@ const Skills = ({ skillsData }: SkillsProps) => {
                   className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                     activeCategory === categorySlug
                       ? `${getColorClasses(category.color || 'gray')} text-white shadow-lg transform scale-105`
-                      : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                   }`}
                 >
                   {category.name}
@@ -77,7 +77,7 @@ const Skills = ({ skillsData }: SkillsProps) => {
             <div className="flex flex-wrap gap-3 justify-center">
               {filteredSkills.map((skill) => (
                 <StaggerItem key={skill._id || skill.name}>
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded-lg px-4 py-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 border border-gray-200 dark:border-gray-700">
+                  <div className="bg-gray-50 dark:bg-gray-800 rounded-lg px-4 py-2 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 border border-gray-300 dark:border-gray-700">
                     <span className="text-sm font-medium text-gray-900 dark:text-white">
                       {skill.name}
                     </span>
@@ -96,7 +96,7 @@ const Skills = ({ skillsData }: SkillsProps) => {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Frontend Development</h3>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-700 dark:text-gray-400">
                 Creating responsive, interactive user interfaces with modern frameworks and best practices
               </p>
             </div>
@@ -108,7 +108,7 @@ const Skills = ({ skillsData }: SkillsProps) => {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Backend Development</h3>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-700 dark:text-gray-400">
                 Building robust APIs and server-side applications with scalable architecture
               </p>
             </div>
@@ -120,7 +120,7 @@ const Skills = ({ skillsData }: SkillsProps) => {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Emerging Technologies</h3>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-700 dark:text-gray-400">
                 Expanding into data engineering and DevOps to stay at the cutting edge
               </p>
             </div>

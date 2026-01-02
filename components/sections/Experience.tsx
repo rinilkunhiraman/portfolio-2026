@@ -61,7 +61,7 @@ const ExperienceSection = ({ experiences: sanityExperiences }: ExperienceSection
                 Experience
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
-              <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              <p className="text-xl text-gray-700 dark:text-gray-400 max-w-2xl mx-auto">
                 My journey through practical projects, freelance work, and continuous learning
               </p>
             </div>
@@ -99,11 +99,11 @@ const ExperienceSection = ({ experiences: sanityExperiences }: ExperienceSection
                                 {experience.type.charAt(0).toUpperCase() + experience.type.slice(1)}
                               </span>
                             )}
-                            <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                            <div className="text-sm text-gray-700 dark:text-gray-400 mt-1">
                               {formatDate(experience.startDate)} -{' '}
                               {experience.endDate ? formatDate(experience.endDate) : 'Present'}
                             </div>
-                            <div className="text-xs text-gray-500 dark:text-gray-500">
+                            <div className="text-xs text-gray-600 dark:text-gray-500">
                               {calculateDuration(experience.startDate, experience.endDate)}
                             </div>
                           </div>
@@ -111,7 +111,7 @@ const ExperienceSection = ({ experiences: sanityExperiences }: ExperienceSection
 
                         {/* Description */}
                         {experience.description && (
-                          <div className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed prose dark:prose-invert max-w-none">
+                          <div className="text-gray-700 dark:text-gray-400 mb-4 leading-relaxed prose dark:prose-invert max-w-none">
                             <PortableText value={experience.description} />
                           </div>
                         )}
@@ -124,7 +124,7 @@ const ExperienceSection = ({ experiences: sanityExperiences }: ExperienceSection
                               {experience.technologies.map((tech) => (
                                 <span
                                   key={tech._id}
-                                  className="px-2 py-1 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm border border-gray-200 dark:border-gray-600 rounded"
+                                  className="px-2 py-1 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-300 text-sm border border-gray-300 dark:border-gray-600 rounded"
                                 >
                                   {tech.name}
                                 </span>
@@ -139,7 +139,7 @@ const ExperienceSection = ({ experiences: sanityExperiences }: ExperienceSection
                             <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Key Achievements:</h4>
                             <ul className="space-y-1">
                               {experience.achievements.map((achievement, idx) => (
-                                <li key={idx} className="flex items-start text-sm text-gray-600 dark:text-gray-400">
+                                <li key={idx} className="flex items-start text-sm text-gray-700 dark:text-gray-400">
                                   <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 mr-2 shrink-0"></span>
                                   {achievement}
                                 </li>
@@ -162,25 +162,25 @@ const ExperienceSection = ({ experiences: sanityExperiences }: ExperienceSection
                 <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">
                   <AnimatedCounter end={3} />+
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
+                <div className="text-sm text-gray-700 dark:text-gray-400">Years Experience</div>
               </div>
               <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg">
                 <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-1">
                   <AnimatedCounter end={25} />+
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Projects Completed</div>
+                <div className="text-sm text-gray-700 dark:text-gray-400">Projects Completed</div>
               </div>
               <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg">
                 <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-1">
                   <AnimatedCounter end={15} />+
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Technologies</div>
+                <div className="text-sm text-gray-700 dark:text-gray-400">Technologies</div>
               </div>
               <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg">
                 <div className="text-2xl font-bold text-orange-600 dark:text-orange-400 mb-1">
                   <AnimatedCounter end={100} />%
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Client Satisfaction</div>
+                <div className="text-sm text-gray-700 dark:text-gray-400">Client Satisfaction</div>
               </div>
             </div>
           </FadeInUp>
