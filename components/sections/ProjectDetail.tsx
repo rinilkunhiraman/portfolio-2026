@@ -58,6 +58,7 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
               height={600}
               className="w-full h-auto"
               priority
+              unoptimized
             />
           </div>
         )}
@@ -180,6 +181,7 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
                         width={600}
                         height={400}
                         className="w-full h-auto"
+                        unoptimized
                       />
                     </div>
                   ))}

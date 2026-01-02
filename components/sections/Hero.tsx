@@ -143,6 +143,7 @@ const Hero = ({ personalInfo }: HeroProps) => {
                       height={400}
                       className="w-full h-full object-cover"
                       priority
+                      unoptimized
                     />
                   ) : (
                     <div className="w-full h-full bg-linear-to-br from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 flex items-center justify-center">

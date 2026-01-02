@@ -75,6 +75,7 @@ const Projects = ({ projects: sanityProjects }: ProjectsProps) => {
                         alt={project.title}
                         fill
                         className="object-cover"
+                        unoptimized
                       />
                     ) : (
                       <>
