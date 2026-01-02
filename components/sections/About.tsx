@@ -22,7 +22,7 @@ const About = ({ personalInfo }: AboutProps) => {
               About Me
             </h2>
             <div className="w-24 h-1 bg-linear-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-700 dark:text-gray-400 max-w-2xl mx-auto">
               {personalInfo?.tagline ||
                 'Passionate developer with a journey from full-stack development to exploring the frontiers of data engineering and DevOps'}
             </p>
@@ -41,19 +41,19 @@ const About = ({ personalInfo }: AboutProps) => {
                     <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
                       My Journey
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                    <p className="text-gray-700 dark:text-gray-400 leading-relaxed mb-4">
                       I&apos;m a dedicated full-stack developer with hands-on experience in building modern
                       web applications using React.js, Next.js, and Node.js. My expertise spans from creating
                       intuitive frontend interfaces to developing robust backend systems with Express and
                       MongoDB.
                     </p>
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+                    <p className="text-gray-700 dark:text-gray-400 leading-relaxed mb-4">
                       What sets me apart is my practical approach to learning and problem-solving. I&apos;ve
                       worked extensively with headless CMS solutions like Sanity, enabling content-driven
                       applications that scale efficiently. My projects demonstrate real-world application of
                       modern development practices and technologies.
                     </p>
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    <p className="text-gray-700 dark:text-gray-400 leading-relaxed">
                       Currently, I&apos;m expanding my skill set into the exciting realms of Data Engineering
                       and DevOps. I&apos;m diving deep into Python, Pandas, Apache Spark for data processing,
                       and exploring cloud infrastructure with Docker, AWS, and CI/CD pipelines. This evolution
@@ -72,23 +72,23 @@ const About = ({ personalInfo }: AboutProps) => {
                   <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
                     {personalInfo?.projectsCompleted || '15'}+
                   </div>
-                  <div className="text-gray-600 dark:text-gray-400">Projects Completed</div>
+                  <div className="text-gray-700 dark:text-gray-400">Projects Completed</div>
                 </div>
                 <div className="text-center p-6 bg-white dark:bg-gray-700 rounded-lg shadow-lg">
                   <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
                     {personalInfo?.yearsOfExperience || '3'}+
                   </div>
-                  <div className="text-gray-600 dark:text-gray-400">Years Experience</div>
+                  <div className="text-gray-700 dark:text-gray-400">Years Experience</div>
                 </div>
                 <div className="text-center p-6 bg-white dark:bg-gray-700 rounded-lg shadow-lg">
                   <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">10+</div>
-                  <div className="text-gray-600 dark:text-gray-400">Technologies</div>
+                  <div className="text-gray-700 dark:text-gray-400">Technologies</div>
                 </div>
                 <div className="text-center p-6 bg-white dark:bg-gray-700 rounded-lg shadow-lg">
                   <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">
                     {personalInfo?.availability === 'available' ? '✓' : '24/7'}
                   </div>
-                  <div className="text-gray-600 dark:text-gray-400">
+                  <div className="text-gray-700 dark:text-gray-400">
                     {personalInfo?.availability === 'available' ? 'Available' : 'Learning Mode'}
                   </div>
                 </div>
@@ -100,19 +100,19 @@ const About = ({ personalInfo }: AboutProps) => {
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <span className="text-gray-600 dark:text-gray-400">Clean, maintainable code</span>
+                    <span className="text-gray-700 dark:text-gray-400">Clean, maintainable code</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                    <span className="text-gray-600 dark:text-gray-400">User-centered design</span>
+                    <span className="text-gray-700 dark:text-gray-400">User-centered design</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                    <span className="text-gray-600 dark:text-gray-400">Continuous improvement</span>
+                    <span className="text-gray-700 dark:text-gray-400">Continuous improvement</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <div className="w-2 h-2 bg-orange-600 rounded-full"></div>
-                    <span className="text-gray-600 dark:text-gray-400">Collaborative teamwork</span>
+                    <span className="text-gray-700 dark:text-gray-400">Collaborative teamwork</span>
                   </div>
                 </div>
               </div>

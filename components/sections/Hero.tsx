@@ -89,7 +89,7 @@ const Hero = ({ personalInfo }: HeroProps) => {
                 </span>
               </div>
 
-              <p className="text-lg lg:text-xl text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed">
+              <p className="text-lg lg:text-xl text-gray-700 dark:text-gray-400 max-w-2xl leading-relaxed">
                 {personalInfo?.tagline ||
                   'Passionate about creating innovative solutions with modern technologies.'}
               </p>
@@ -120,7 +120,7 @@ const Hero = ({ personalInfo }: HeroProps) => {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transform hover:scale-110 transition-all duration-300"
+                    className="text-gray-700 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transform hover:scale-110 transition-all duration-300"
                     aria-label={link.platform}
                   >
                     {getSocialIcon(link.platform)}
@@ -170,7 +170,7 @@ const Hero = ({ personalInfo }: HeroProps) => {
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <Link
             href="/about"
-            className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="text-gray-700 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             aria-label="Learn more about me"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
