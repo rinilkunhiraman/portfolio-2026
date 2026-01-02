@@ -1,10 +1,8 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import HCaptcha from '@hcaptcha/react-hcaptcha'
+import { useState } from 'react'
 import type { ContactForm, PersonalInfo } from '@/types'
 import { submitContactForm } from '@/lib/actions'
-import { FadeInUp, FadeInLeft, FadeInRight, ScaleOnHover } from '@/components/ui/Animations'
 
 interface ContactProps {
   personalInfo: PersonalInfo | null
@@ -20,8 +18,6 @@ const Contact = ({ personalInfo }: ContactProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [statusMessage, setStatusMessage] = useState<string>('');
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
-  const captchaRef = useRef<HCaptcha>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -31,42 +27,26 @@ const Contact = ({ personalInfo }: ContactProps) => {
     }));
   };
 
-  const handleCaptchaVerify = (token: string) => {
-    setCaptchaToken(token);
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!captchaToken) {
-      setSubmitStatus('error');
-      setStatusMessage('Please complete the captcha verification');
-      return;
-    }
 
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setStatusMessage('');
 
     console.log('Form submission started...')
-    console.log('Captcha token available:', !!captchaToken)
 
     try {
-      const result = await submitContactForm(formData, captchaToken);
+      const result = await submitContactForm(formData);
       console.log('Form submission successful:', result)
       setSubmitStatus('success');
       setStatusMessage(result.message);
       // Clear form only on success
       setFormData({ name: '', email: '', subject: '', message: '' });
-      setCaptchaToken(null);
-      captchaRef.current?.resetCaptcha();
     } catch (error) {
       console.error('Form submission failed:', error)
       setSubmitStatus('error');
       setStatusMessage(error instanceof Error ? error.message : 'Failed to send message. Please try again.');
-      // Reset captcha on error so user can retry
-      setCaptchaToken(null);
-      captchaRef.current?.resetCaptcha();
     } finally {
       setIsSubmitting(false);
     }
@@ -179,7 +159,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
               Get In Touch
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-700 dark:text-gray-400 max-w-2xl mx-auto">
               Ready to collaborate? Let's discuss your next project or just say hello!
             </p>
           </div>
@@ -191,7 +171,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                   Let's Start a Conversation
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
+                <p className="text-gray-700 dark:text-gray-400 leading-relaxed mb-8">
                   I'm always excited to work on new projects and collaborate with fellow developers,
                   designers, and entrepreneurs. Whether you have a specific project in mind or just
                   want to connect, I'd love to hear from you.
@@ -232,7 +212,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-12 h-12 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 shadow-md hover:shadow-lg"
+                        className="w-12 h-12 bg-white dark:bg-gray-700 rounded-lg flex items-center justify-center text-gray-700 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 shadow-md hover:shadow-lg"
                         aria-label={social.platform}
                       >
                         {getSocialIcon(social.platform)}
@@ -248,7 +228,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-800 dark:text-gray-300 mb-2">
                       Name *
                     </label>
                     <input
@@ -263,7 +243,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-800 dark:text-gray-300 mb-2">
                       Email *
                     </label>
                     <input
@@ -280,7 +260,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-800 dark:text-gray-300 mb-2">
                     Subject *
                   </label>
                   <input
@@ -296,7 +276,7 @@ const Contact = ({ personalInfo }: ContactProps) => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-800 dark:text-gray-300 mb-2">
                     Message *
                   </label>
                   <textarea
@@ -311,20 +291,10 @@ const Contact = ({ personalInfo }: ContactProps) => {
                   />
                 </div>
 
-                {/* hCaptcha */}
-                <div className="flex justify-center">
-                  <HCaptcha
-                    ref={captchaRef}
-                    sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ''}
-                    onVerify={handleCaptchaVerify}
-                    theme="dark"
-                  />
-                </div>
-
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  disabled={isSubmitting || !captchaToken}
+                  disabled={isSubmitting}
                   className="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {isSubmitting ? (
