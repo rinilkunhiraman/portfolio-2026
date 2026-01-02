@@ -31,10 +31,10 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             {project.title}
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">{project.description}</p>
+          <p className="text-xl text-gray-700 dark:text-gray-400 mb-6">{project.description}</p>
 
           {/* Meta information */}
-          <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex flex-wrap gap-4 text-sm text-gray-700 dark:text-gray-400">
             {project.category && (
               <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full">
                 {project.category}
@@ -129,7 +129,7 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
                           d="M5 13l4 4L19 7"
                         />
                       </svg>
-                      <span className="text-gray-700 dark:text-gray-300">{feature}</span>
+                      <span className="text-gray-800 dark:text-gray-300">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -202,7 +202,7 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech._id}
-                      className="px-3 py-1 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm border border-gray-200 dark:border-gray-600"
+                      className="px-3 py-1 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded-full text-sm border border-gray-300 dark:border-gray-600"
                     >
                       {tech.name}
                     </span>
@@ -217,19 +217,19 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
               <div className="space-y-3">
                 {project.duration && (
                   <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Duration</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-400">Duration</p>
                     <p className="text-gray-900 dark:text-white font-semibold">{project.duration}</p>
                   </div>
                 )}
                 {project.teamSize && (
                   <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Team Size</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-400">Team Size</p>
                     <p className="text-gray-900 dark:text-white font-semibold">{project.teamSize} members</p>
                   </div>
                 )}
                 {project.status && (
                   <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Status</p>
+                    <p className="text-sm text-gray-700 dark:text-gray-400">Status</p>
                     <p className="text-gray-900 dark:text-white font-semibold capitalize">{project.status}</p>
                   </div>
                 )}
@@ -239,7 +239,7 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
             {/* Testimonial */}
             {project.testimonial && (
               <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 border-l-4 border-blue-600">
-                <p className="text-gray-700 dark:text-gray-300 italic mb-4">
+                <p className="text-gray-800 dark:text-gray-300 italic mb-4">
                   "{project.testimonial.quote}"
                 </p>
                 <div>
@@ -247,7 +247,7 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
                     {project.testimonial.author}
                   </p>
                   {project.testimonial.role && (
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-gray-700 dark:text-gray-400">
                       {project.testimonial.role}
                     </p>
                   )}

@@ -36,7 +36,7 @@ const Projects = ({ projects: sanityProjects }: ProjectsProps) => {
               Featured Projects
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-700 dark:text-gray-400 max-w-2xl mx-auto">
               A showcase of my work across different technologies and domains
             </p>
           </div>
@@ -106,7 +106,7 @@ const Projects = ({ projects: sanityProjects }: ProjectsProps) => {
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                       {project.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    <p className="text-gray-700 dark:text-gray-400 leading-relaxed">
                       {project.description}
                     </p>
                   </div>
@@ -131,7 +131,7 @@ const Projects = ({ projects: sanityProjects }: ProjectsProps) => {
                   {project.features && project.features.length > 0 && (
                     <div className="mb-6">
                       <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Key Features:</h4>
-                      <ul className="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                      <ul className="text-sm text-gray-700 dark:text-gray-400 space-y-1">
                         {project.features.slice(0, 3).map((feature, idx) => (
                           <li key={idx} className="flex items-start">
                             <span className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 mr-2 shrink-0"></span>
@@ -178,7 +178,7 @@ const Projects = ({ projects: sanityProjects }: ProjectsProps) => {
 
           {/* Call to Action */}
           <div className="text-center mt-16">
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
+            <p className="text-lg text-gray-700 dark:text-gray-400 mb-6">
               Interested in seeing more of my work?
             </p>
             <a
